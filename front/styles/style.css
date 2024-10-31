@@ -1,0 +1,30 @@
+.body {
+  min-width: 100dvw;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ul li {
+  list-style: none;
+}
+.ul li a {
+  width: 10vw;
+  background-color: bisque;
+  margin: 5px 25px;
+}
