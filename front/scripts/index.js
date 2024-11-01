@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     card.innerHTML = `
             <img src="${data.poster}" alt="${data.title}">
+            <div class="infocontainer">
             <h2 class="titulo">${data.title}</h2>
             <h3 class="subtitulo">${data.director} | ${data.year}</h3>
             <p class="cuerpo">
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
              Puntuación: ${data.rate}.
             </p>
             <div class="pie"><a href="${data.link}">Más información</a></div>
+            </div>
         `;
 
     container.appendChild(card);

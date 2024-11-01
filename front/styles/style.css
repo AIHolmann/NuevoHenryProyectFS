@@ -1,17 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
 .body {
-  min-width: 100dvw;
+  width: 100%;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin: 0;
+  box-sizing: border-box;
+  color: #f2f2f2;
+  background-color: #111927;
+  background-image: radial-gradient(
+      at 47% 33%,
+      hsl(211.91, 100%, 27%) 0,
+      transparent 59%
+    ),
+    radial-gradient(at 82% 65%, hsl(218, 39%, 11%) 0, transparent 55%);
 }
 
 .nav {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0px 30px;
+  background-color: #0d131e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.icono {
+  text-decoration: none;
+  color: lightblue;
+  text-transform: uppercase;
 }
 
 .ul {
@@ -25,6 +48,84 @@
 }
 .ul li a {
   width: 10vw;
-  background-color: bisque;
+  color: bisque;
   margin: 5px 25px;
+  text-decoration: none;
+}
+
+.body main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0px 30px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  width: 90%;
+}
+
+.card {
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 25vw;
+  height: 70vh;
+  overflow: hidden;
+  margin: 15px;
+  z-index: 20;
+  position: relative;
+}
+
+.card img {
+  height: auto;
+  width: 100%;
+}
+
+.infocontainer {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.165) 20%,
+    black 100%
+  );
+  z-index: 990;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.infocontainer h3,
+.infocontainer h2 {
+  margin: 0;
+  margin-top: 10px;
+}
+
+.pie a {
+  text-decoration: none;
+  color: lightblue;
+}
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.125);
+  height: 10vh;
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
