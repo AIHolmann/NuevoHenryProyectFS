@@ -43,16 +43,6 @@
   justify-content: space-around;
 }
 
-.ul li {
-  list-style: none;
-}
-.ul li a {
-  width: 10vw;
-  color: bisque;
-  margin: 5px 25px;
-  text-decoration: none;
-}
-
 .body main {
   width: 100%;
   display: flex;
@@ -107,12 +97,22 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
+  color: wheat;
 }
 
 .infocontainer h3,
 .infocontainer h2 {
   margin: 0;
   margin-top: 10px;
+  font-size: x-large;
+}
+
+.infocontainer h3 {
+  font-size: large;
+}
+
+.cuerpo {
+  font-size: small;
 }
 
 .pie a {
