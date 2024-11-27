@@ -1,5 +1,5 @@
 module.exports = {
-  getallMovies: (req, res) => {
+  getallMovies: async (req, res) => {
     res.status(200).send("Proximamente va a haber peliculas acá");
   },
 };
