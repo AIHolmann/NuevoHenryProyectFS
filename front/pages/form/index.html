@@ -16,38 +16,54 @@
 </head>
 
 <body>
-  <header>
-    <a href="../../index.html">Volver atrás</a>
-    <h1>Cargar Nueva Película</h1>
+  <header class="p-4">
+    <a href="../../index.html"
+      class="p-4 link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Volver
+      atrás</a>
+    <h1 class="p-3">Completa el siguiente formulario para cargar tu nueva película...</h1>
   </header>
-  <form id="formularioPelicula">
-    <label for="titulo">Título:</label>
-    <input type="text" id="titulo" required><br><br>
-    <label for="anio">Año:</label>
-    <input type="number" id="anio" required><br><br>
-    <label for="director">Director:</label>
-    <input type="text" id="director" required><br><br>
-    <label for="duracion">Duración:</label>
-    <input type="number" id="duracion" required><br><br>
-
-    <label for="genero">Género:</label>
-    <select id="genero" required>
-      <option value="action">Action</option>
-      <option value="adventure">Adventure</option>
-      <option value="comedy">Comedy</option>
-      <option value="drama">Drama</option>
-      <option value="fantasy">Fantasy</option>
-      <option value="horror">Horror</option>
-      <option value="mystery">Mystery</option>
-      <option value="thriller">Thriller</option>
-      <option value="sci-fi">Sci-Fi</option>
-    </select><br><br>
-
-    <label for="puntuacion">Puntuación:</label>
-    <input type="number" id="puntuacion" min="1" max="10" required><br><br>
-    <label for="poster">Póster:</label>
-    <input type="url" id="poster" required><br><br>
-    <button type="submit" id="guardar">Guardar</button>
+  <form id="formularioPelicula" class="p-5">
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título:</label>
+      <input type="text" id="titulo" class="form-control" placeholder="Ingrese título" required><br><br>
+    </div>
+    <di class="mb-3">
+      <label for="anio" class="form-label">Año:</label>
+      <input type="number" id="anio" class="form-control" placeholder="Año" maxlength="4" required><br><br>
+      </div>
+      <div class="mb-3">
+        <label for="director" class="form-label">Director:</label>
+        <input type="text" id="director" class="form-control" placeholder="Ingrese director" required><br><br>
+      </div>
+      <div class="mb-3">
+        <label for="duracion" class="form-label"></label>Duración (ejemplo: '2h 16min'): </label>
+        <input type="text" id="duracion" class="form-control" placeholder="Ingrese duracion, ejemplo: '2h 16min'"
+          required> <br><br>
+      </div>
+      <div class="mb-3">
+        <label for="genero" class="form-label">Género:</label>
+        <select id="genero" class="form-select" required>
+          <option value="action">Action</option>
+          <option value="adventure">Adventure</option>
+          <option value="comedy">Comedy</option>
+          <option value="drama">Drama</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="horror">Horror</option>
+          <option value="mystery">Mystery</option>
+          <option value="thriller">Thriller</option>
+          <option value="sci-fi">Sci-Fi</option>
+        </select><br><br>
+      </div>
+      <div class="mb-3">
+        <label for="puntuacion" class="form-label">Puntuación:</label>
+        <input type="text" id="puntuacion" class="form-control" placeholder="Solo 1 (un) decimal de ser necesario"
+          required><br><br>
+      </div>
+      <div class="mb-3">
+        <label for="poster" class="form-label">Póster:</label>
+        <input type="url" id="poster" class="form-control" placeholder="URL" required><br><br>
+      </div>
+      <button type="submit" id="guardar" class="btn btn-primary">Guardar</button>
   </form>
 
 
