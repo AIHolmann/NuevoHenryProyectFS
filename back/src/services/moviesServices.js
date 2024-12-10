@@ -17,8 +17,8 @@ module.exports = {
     return movie;
   },
 
-  createMovie: async ({ movie }) => {
-    const newmovie = await Movie.create(movie);
+  createMovie: async (allproperties) => {
+    const newmovie = await Movie.create(allproperties);
     return newmovie;
   },
 };

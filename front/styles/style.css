@@ -98,6 +98,7 @@
   align-items: flex-start;
   justify-content: flex-end;
   color: wheat;
+  width: 100%;
 }
 
 .infocontainer h3,

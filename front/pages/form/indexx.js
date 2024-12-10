@@ -7,7 +7,93 @@ const limpiarFormulario = () => {
   console.log("form limpio");
 };
 
-const validarFormulario = () => {
+function validateAndCreateData({
+  title,
+  year,
+  director,
+  duration,
+  genre,
+  rate,
+  poster,
+}) {
+  // Validación del título
+  if (!title.value.trim()) {
+    alert("El título no puede estar vacío.");
+    return;
+  }
+
+  // Validación del año
+  const yearValue = Number(year.value);
+  if (
+    !/^\d{4}$/.test(year.value) ||
+    yearValue < 1888 ||
+    yearValue > new Date().getFullYear()
+  ) {
+    alert(
+      "El año debe ser un número entero de 4 dígitos y debe estar entre 1888 y el año actual."
+    );
+    return;
+  }
+
+  // Validación y formateo del director
+  const directorValue = director.value.trim();
+  if (!directorValue) {
+    alert("El nombre del director no puede estar vacío.");
+    return;
+  }
+  const formattedDirector = directorValue.replace(/\b\w/g, (char) =>
+    char.toUpperCase()
+  );
+
+  // Validación de la duración
+  if (!/^(\d+h\s\d+min)$/.test(duration.value)) {
+    alert('La duración debe estar en el formato "2h 16min".');
+    return;
+  }
+
+  const genres = Array.from(genre.selectedOptions).map(
+    (option) => option.value
+  );
+  // Validación del género
+  if (!genres.length) {
+    alert("Debes seleccionar un género.");
+    return;
+  }
+
+  // Validación de la puntuación
+  const rateValue = parseFloat(rate.value);
+  if (
+    isNaN(rateValue) ||
+    rateValue < 1 ||
+    rateValue > 10 ||
+    (rateValue < 10 && !/^\d(\.\d)?$/.test(rate.value))
+  ) {
+    alert(
+      "La puntuación debe ser un número entre 1 y 10, con un solo decimal permitido para números del 1 al 9."
+    );
+    return;
+  }
+
+  // Validación de la URL del póster
+  const urlPattern = /^(https?:\/\/[^\s]+)$/;
+  if (!urlPattern.test(poster.value)) {
+    alert("La URL del póster no es válida.");
+    return;
+  }
+
+  // Si todas las validaciones pasan, crea el objeto movie
+  return (movie = {
+    title: title.value.trim(),
+    year: yearValue,
+    director: formattedDirector,
+    duration: duration.value,
+    genre: genres,
+    rate: rateValue,
+    poster: poster.value.trim(),
+  });
+}
+
+const validarFormulario = async () => {
   const formulario = document.getElementById("formularioPelicula");
   const elementosRequeridos = formulario.querySelectorAll(":required");
 
@@ -16,8 +102,30 @@ const validarFormulario = () => {
     (elemento) => elemento.value.trim() !== ""
   );
 
-  if (todosValores) {
-    alert("Formulario aceptado.");
+  const title = document.getElementById("titulo");
+  const year = document.getElementById("anio");
+  const director = document.getElementById("director");
+  const duration = document.getElementById("duracion");
+  const genre = document.getElementById("genero");
+  const rate = document.getElementById("puntuacion");
+  const poster = document.getElementById("poster");
+
+  let movie = {
+    title,
+    year,
+    director,
+    duration,
+    genre,
+    rate,
+    poster,
+  };
+
+  const reformedmovie = validateAndCreateData(movie);
+
+  if (todosValores && reformedmovie) {
+    console.log(reformedmovie);
+    //  await axios.post("http://localhost:3000/movies", reformedmovie);
+    alert("Película cargada con éxito, volver al menú principal para verla");
     return true; // Formulario válido
   } else {
     // Si algún campo está vacío, muestra un mensaje de error
@@ -48,26 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("El formulario no se encontró en el DOM");
   }
-  /*
-  document
-    .getElementById("limpiar")
-    .addEventListener("click", limpiarFormulario);
-
-  // Agrega el evento al botón de enviar
-  document
-    .getElementById("formularioPelicula")
-    .addEventListener("submit", (e) => {
-      e.preventDefault(); // Evita que el formulario se envíe automáticamente
-      if (validarFormulario()) {
-        console.log("Formulario enviado correctamente");
-        // Aquí va tu lógica para enviar los datos
-      }
-    });*/
 });
-
-/*
-// Botón de limpieza
-document.getElementById("limpiar").addEventListener("click", limpiarFormulario);
 
 // Botón de enviar
 document.getElementById("guardar").addEventListener("submit", function (e) {
@@ -76,18 +165,14 @@ document.getElementById("guardar").addEventListener("submit", function (e) {
     // Aquí iría el código para enviar el formulario
     console.log("Formulario enviado correctamente");
 
-    /*
-    
-     axios.post("http://localhost:3000/movies", formData)
-      .then(response => {
+    axios
+      .post("http://localhost:3000/movies", formData)
+      .then((response) => {
         console.log("Película guardada:", response.data);
         limpiarFormulario(); // Limpiar el formulario después de enviar
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error al guardar la película:", error);
       });
-
-    
   }
 });
-*/
