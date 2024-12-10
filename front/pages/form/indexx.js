@@ -51,10 +51,10 @@ function validateAndCreateData({
     return;
   }
 
+  // Validación del género
   const genres = Array.from(genre.selectedOptions).map(
     (option) => option.value
   );
-  // Validación del género
   if (!genres.length) {
     alert("Debes seleccionar un género.");
     return;
@@ -124,9 +124,25 @@ const validarFormulario = async () => {
 
   if (todosValores && reformedmovie) {
     console.log(reformedmovie);
-    //  await axios.post("http://localhost:3000/movies", reformedmovie);
-    alert("Película cargada con éxito, volver al menú principal para verla");
-    return true; // Formulario válido
+    try {
+      const response = await fetch("http://localhost:3000/movies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Especifica el tipo de contenido
+        },
+        body: JSON.stringify(reformedmovie), // Convierte el objeto a JSON
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json(); // Convierte la respuesta a JSON
+      console.log("Película guardada:", data);
+      limpiarFormulario(); // Limpiar el formulario después de enviar
+    } catch (error) {
+      console.error("Error al guardar la película:", error);
+    }
   } else {
     // Si algún campo está vacío, muestra un mensaje de error
     alert("Por favor, llene todos los campos obligatorios.");
@@ -146,33 +162,15 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("El botón limpiar no se encontró en el DOM");
   }
   const formulario = document.getElementById("formularioPelicula");
+  const butonguardar = document.getElementById("guardar");
   if (formulario) {
-    formulario.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (validarFormulario()) {
+    butonguardar.addEventListener("click", (e) => {
+      const resp = validarFormulario();
+      if (resp) {
         console.log("Formulario enviado correctamente");
       }
     });
   } else {
     console.error("El formulario no se encontró en el DOM");
-  }
-});
-
-// Botón de enviar
-document.getElementById("guardar").addEventListener("submit", function (e) {
-  e.preventDefault(); // Evita que el formulario se envíe automáticamente
-  if (validarFormulario()) {
-    // Aquí iría el código para enviar el formulario
-    console.log("Formulario enviado correctamente");
-
-    axios
-      .post("http://localhost:3000/movies", formData)
-      .then((response) => {
-        console.log("Película guardada:", response.data);
-        limpiarFormulario(); // Limpiar el formulario después de enviar
-      })
-      .catch((error) => {
-        console.error("Error al guardar la película:", error);
-      });
   }
 });
